@@ -12,7 +12,7 @@
         <repository>
             <id>github</id>
             <name>GitHub ZGameLogic Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/ZGameLogic/Data-Otter-Service</url>
+            <url>https://maven.pkg.github.com/ZGameLogic/Spring-Discord-Auth</url>
         </repository>
     </distributionManagement>
 
