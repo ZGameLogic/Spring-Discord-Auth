@@ -9,6 +9,21 @@
     <version>0.0.1</version>
     <description>A small package to add discord auth endpoints to spring web apps.</description>
     <url>https://github.com/ZGameLogic/Spring-Discord-Auth</url>
+    <developers>
+        <developer>
+            <name>Ben Shabowski</name>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/ZGameLogic/Spring-Discord-Auth</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
