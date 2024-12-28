@@ -6,13 +6,13 @@
 
     <groupId>com.zgamelogic.discord.auth</groupId>
     <artifactId>Discord-Auth</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.1</version>
 
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub ZGameLogic Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/ZGameLogic/Discord-Auth</url>
+            <url>https://maven.pkg.github.com/ZGameLogic/Data-Otter-Service</url>
         </repository>
     </distributionManagement>
 
@@ -24,18 +24,6 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>21</source>
-                    <target>21</target>
-                    <encoding>UTF-8</encoding>
-                    <debug>true</debug>
-                    <debuglevel>lines,vars,source</debuglevel>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -57,7 +45,7 @@
                     <execution>
                         <id>attach-sources</id>
                         <goals>
-                            <goal>jar</goal>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
