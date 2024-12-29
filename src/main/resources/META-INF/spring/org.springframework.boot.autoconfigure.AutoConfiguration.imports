@@ -1,2 +1,4 @@
 com.zgamelogic.discord.auth.controllers.DiscordAuthController
 com.zgamelogic.discord.auth.configurations.WebConfig
+com.zgamelogic.discord.auth.resolvers.DiscordUserResolver
+com.zgamelogic.discord.auth.advices.GlobalExceptionHandler
