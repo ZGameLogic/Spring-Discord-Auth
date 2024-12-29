@@ -3,6 +3,7 @@ package com.zgamelogic.discord.auth.resolvers;
 import com.zgamelogic.discord.auth.data.authData.DiscordUser;
 import com.zgamelogic.discord.auth.data.database.authData.AuthData;
 import com.zgamelogic.discord.auth.data.database.authData.AuthDataRepository;
+import com.zgamelogic.discord.auth.exceptions.UnauthorizedException;
 import com.zgamelogic.discord.auth.services.DiscordService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
@@ -40,8 +41,6 @@ public class DiscordUserResolver implements HandlerMethodArgumentResolver {
         Optional<AuthData> authData = authDataRepository.findById_DiscordIdAndId_DeviceIdAndToken(discordUser.get().id(), device, token);
         if (authData.isEmpty()) throw new UnauthorizedException();
 
-        model.addAttribute("discordUser", discordUser.get());
-        model.addAttribute("authData", authData.get());
-        return null;
+        return discordUser.get();
     }
 }

@@ -1,1 +1,2 @@
 com.zgamelogic.discord.auth.controllers.DiscordAuthController
+com.zgamelogic.discord.auth.configurations.WebConfig
