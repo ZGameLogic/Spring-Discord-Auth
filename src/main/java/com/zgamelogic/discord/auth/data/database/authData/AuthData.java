@@ -1,10 +1,9 @@
 package com.zgamelogic.discord.auth.data.database.authData;
 
+import com.zgamelogic.discord.auth.data.authData.DeviceRegistration;
 import com.zgamelogic.discord.auth.data.authData.DiscordToken;
 import com.zgamelogic.discord.auth.data.authData.DiscordUser;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
@@ -22,8 +21,9 @@ public class AuthData {
     private String tokenType;
     private String scope;
     private Instant expires;
-    @Setter
-    private String appleNotificationId;
+    private String notificationId;
+    @Enumerated(EnumType.STRING)
+    private DeviceType deviceType;
 
     public AuthData(DiscordToken token, DiscordUser user, String deviceId) {
         this.token = token.access_token();
@@ -34,6 +34,11 @@ public class AuthData {
         expires = new Date().toInstant().plusSeconds(token.expires_in());
     }
 
+    public void setDeviceNotification(DeviceRegistration deviceRegistration) {
+        this.notificationId = deviceRegistration.notificationId();
+        this.deviceType = deviceRegistration.deviceType();
+    }
+
     @Embeddable
     @AllArgsConstructor
     @NoArgsConstructor
@@ -41,5 +46,9 @@ public class AuthData {
     public static class AuthDataId {
         private String deviceId;
         private Long discordId;
+    }
+
+    public enum DeviceType {
+        IOS, ANDROID
     }
 }
