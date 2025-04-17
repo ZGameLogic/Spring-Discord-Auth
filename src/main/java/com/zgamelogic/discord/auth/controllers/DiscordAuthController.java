@@ -1,17 +1,12 @@
 package com.zgamelogic.discord.auth.controllers;
 
-import com.zgamelogic.discord.auth.data.authData.DiscordLoginPayload;
-import com.zgamelogic.discord.auth.data.authData.DiscordToken;
-import com.zgamelogic.discord.auth.data.authData.DiscordUser;
+import com.zgamelogic.discord.auth.data.authData.*;
 import com.zgamelogic.discord.auth.data.database.authData.AuthData;
 import com.zgamelogic.discord.auth.data.database.authData.AuthDataRepository;
 import com.zgamelogic.discord.auth.services.DiscordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -28,11 +23,24 @@ public class DiscordAuthController {
         this.discordService = discordService;
     }
 
+    @PostMapping("/devices/register")
+    public ResponseEntity<?> registerDevice(@RequestBody DeviceRegister deviceRegister) {
+        Optional<AuthData> data = authDataRepository.findById_DeviceId(deviceRegister.deviceId());
+        if (data.isPresent()) {
+            data.get().setNotificationId(deviceRegister.token());
+            data.get().setDeviceType(deviceRegister.deviceType());
+            authDataRepository.save(data.get());
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @PostMapping("/devices/register/{deviceId}/{token}")
     public ResponseEntity<?> registerDevice(@PathVariable String deviceId, @PathVariable String token) {
         Optional<AuthData> data = authDataRepository.findById_DeviceId(deviceId);
         if (data.isPresent()) {
-            data.get().setAppleNotificationId(token);
+            data.get().setNotificationId(token);
+            data.get().setDeviceType(DeviceType.APPLE);
             authDataRepository.save(data.get());
             return ResponseEntity.ok().build();
         }

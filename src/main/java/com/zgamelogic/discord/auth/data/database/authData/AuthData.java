@@ -1,10 +1,9 @@
 package com.zgamelogic.discord.auth.data.database.authData;
 
+import com.zgamelogic.discord.auth.data.authData.DeviceType;
 import com.zgamelogic.discord.auth.data.authData.DiscordToken;
 import com.zgamelogic.discord.auth.data.authData.DiscordUser;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
@@ -23,7 +22,10 @@ public class AuthData {
     private String scope;
     private Instant expires;
     @Setter
-    private String appleNotificationId;
+    private String notificationId;
+    @Setter
+    @Enumerated(EnumType.STRING)
+    private DeviceType deviceType;
 
     public AuthData(DiscordToken token, DiscordUser user, String deviceId) {
         this.token = token.access_token();
