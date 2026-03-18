@@ -7,7 +7,7 @@
     <name>Spring Discord Auth</name>
     <groupId>com.zgamelogic</groupId>
     <artifactId>spring-discord-auth</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <description>A small package to add discord auth endpoints to spring web apps.</description>
     <url>https://github.com/ZGameLogic/Spring-Discord-Auth</url>
     <developers>
